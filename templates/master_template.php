@@ -52,8 +52,8 @@
             <a class="navbar-brand" href="#"><?= PROJECT_NAME ?></a>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li <?= $controller == 'posts' ? 'class="active"' : '' ?>><a href="#">Home</a></li>
+            <!--<ul class="nav navbar-nav">
+                <li <?= $controller == 'welcome' ? 'class="active"' : '' ?>><a href="#">Home</a></li>
                 <li <?= $controller == 'halo' ? 'class="active"' : '' ?>><a href="halo">Halo admin</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sample dropdown <b class="caret"></b></a>
@@ -67,17 +67,22 @@
                         <li><a href="#">One more separated link</a></li>
                     </ul>
                 </li>
+            </ul>-->
+            <ul class="nav navbar-nav">
+                <li <?= $controller == 'posts' ? 'class="active"' : '' ?>><a href="<?php echo BASE_URL; ?>">Posts</a></li>
+                <li <?= $controller == 'tags' ? 'class="active"' : '' ?>><a href="<?php echo BASE_URL; ?>tags">Tags</a></li>
+                <li <?= $controller == 'users' ? 'class="active"' : '' ?>><a href="<?php echo BASE_URL; ?>users">Users</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= $_SESSION['language'] ?> <b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <?php foreach ($supported_languages as $language): ?>
+						<?php foreach ($supported_languages as $language): ?>
                             <li><a href="<?= $controller ?>?language=<?= $language ?>"
                                    class="<?= $language == $_SESSION['language'] ? 'active' : '' ?>"><?= $language ?></a>
                             </li>
-                        <?php endforeach ?>
+						<?php endforeach ?>
                     </ul>
                 </li>
                 <li><a href="settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
@@ -90,9 +95,10 @@
 <div class="container">
 
     <!-- Main component for a primary marketing message or call to action -->
-    <?php if (!file_exists("views/$controller/{$controller}_$action.php")) error_out('The view <i>views/' . $controller . '/' . $controller . '_' . $action . '.php</i> does not exist. Create that file.'); ?>
-    <?php @require "views/$controller/{$controller}_$action.php"; ?>
-    
+	<?php if (!file_exists("views/$controller/{$controller}_$action.php")) error_out('The view <i>views/' . $controller . '/' . $controller . '_' . $action . '.php</i> does not exist. Create that file.'); ?>
+	<?php @require "views/$controller/{$controller}_$action.php"; ?>
+
+
 </div>
 <!-- /container -->
 
