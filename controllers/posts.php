@@ -12,10 +12,16 @@ class posts extends Controller
     function index()
     {
 
-	    $this->posts = get_all("SELECT * FROM posts");
+        $this->users = get_all("SELECT * FROM users");
     }
 
-    /**
+	function view(){
+		$post_id = $this->params[0];
+		$this->post = get_one("SELECT * FROM posts NATURAL JOIN user WHERE post_id='$post_id'");
+	}
+
+
+	/**
      * This function will only be ran in case of an AJAX request. No view will be attempted to load after this function.
      */
     function AJAX_success()
